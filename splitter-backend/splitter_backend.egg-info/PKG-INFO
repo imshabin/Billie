@@ -1,0 +1,22 @@
+Metadata-Version: 2.4
+Name: splitter-backend
+Version: 0.1.0
+Summary: Backend API for an automatic expense-splitter app
+Author-email: Your Name <you@example.com>
+Requires-Python: >=3.12
+Requires-Dist: fastapi
+Requires-Dist: uvicorn[standard]
+Requires-Dist: pydantic-settings
+Requires-Dist: sqlalchemy
+Requires-Dist: asyncpg
+Requires-Dist: alembic
+Requires-Dist: redis
+Requires-Dist: structlog
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-asyncio; extra == "dev"
+Requires-Dist: httpx; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+Requires-Dist: types-redis; extra == "dev"
+Requires-Dist: pre-commit; extra == "dev"

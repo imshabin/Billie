@@ -1,0 +1,17 @@
+fastapi
+uvicorn[standard]
+pydantic-settings
+sqlalchemy
+asyncpg
+alembic
+redis
+structlog
+
+[dev]
+pytest
+pytest-asyncio
+httpx
+ruff
+mypy
+types-redis
+pre-commit
