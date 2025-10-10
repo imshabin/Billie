@@ -1,2 +1,2 @@
 # Billie
-One APP to SPLIT THEM ALL
+1 APP 2 SPLIT THEM ALL
