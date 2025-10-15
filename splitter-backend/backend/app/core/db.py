@@ -5,13 +5,20 @@ from sqlalchemy.ext.asyncio import (
     AsyncSession,
 )
 from sqlalchemy import text
-from app.core.config import settings
+from backend.app.core.config import settings
 
 # 1) Build the async Postgres URL (asyncpg driver)
+
+from sqlalchemy.orm import declarative_base
+
+Base = declarative_base()
+
+
 DATABASE_URL = (
     f"postgresql+asyncpg://{settings.db_user}:{settings.db_password}"
     f"@{settings.db_host}:{settings.db_port}/{settings.db_name}"
 )
+
 
 # 2) Create a single process-wide async engine (connection pool inside)
 engine = create_async_engine(

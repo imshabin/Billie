@@ -1,6 +1,6 @@
 # backend/app/core/redis.py
 import redis
-from app.core.config import settings
+from backend.app.core.config import settings
 
 # 1) Create a single process-wide Redis client
 # decode_responses=True gives you str instead of bytes

@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from app.core.db import ping_db
-from app.core.redis import ping_redis
+from backend.app.core.db import ping_db
+from backend.app.core.redis import ping_redis
 
 router = APIRouter()
 
