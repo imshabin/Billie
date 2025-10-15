@@ -14,3 +14,10 @@ class User(BaseModel):
 
     class Config:
         orm_mode = True # Helps Pydantic work with SQLAlchemy objects
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    email: EmailStr | None = None
