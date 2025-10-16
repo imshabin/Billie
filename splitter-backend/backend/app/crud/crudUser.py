@@ -2,7 +2,7 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select # Use the modern select statement
 from backend.app.models.user import User
-from . import schemas
+from .. import schemas
 
 # Note: async def and await
 async def get_user_by_email(db: AsyncSession, email: str):

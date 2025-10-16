@@ -1,8 +1,8 @@
 # In models.py
 from sqlalchemy import Column, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
-
-Base = declarative_base()  # ✅ create the Base object
+from sqlalchemy.orm import relationship
+from .base import Base
+from .bridge_tables import user_group_association  # Import the association table
 
 
 class User(Base):
@@ -14,6 +14,8 @@ class User(Base):
     name = Column(String, unique=True, index=True)
     role_id = Column(Integer)
     created_at = Column(String)
+
+    groups = relationship("Group", secondary=user_group_association, back_populates="members")
 
 # pip install pydantic[email]
 # pip install passlib

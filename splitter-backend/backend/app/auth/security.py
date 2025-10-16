@@ -6,7 +6,9 @@ from fastapi import Depends, HTTPException, status
 from backend.app.dependencies import get_db 
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
-from backend.app import schemas, crud
+from backend.app import schemas
+from backend.app.crud import crudUser
+
 from backend.app.core.config import settings
 
 # --- Password Hashing ---
@@ -58,7 +60,7 @@ async def get_current_user(
     except JWTError:
         raise credentials_exception
     
-    user = await crud.get_user_by_email(db, email=token_data.email)
+    user = await crudUser.get_user_by_email(db, email=token_data.email)
     if user is None:
         raise credentials_exception
     return user
