@@ -1,4 +1,5 @@
 # backend/app/crud.py (or wherever your crudGroup is defined)
+from fastapi import APIRouter, Depends, HTTPException, status
 
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
@@ -59,4 +60,41 @@ async def get_user_groups(
     groups = result.scalars().all()
     return list(groups)
 
+async def get_group_by_id(
+    db: AsyncSession,
+    group_id: int
+) -> Group | None:
+    """Get a group by its ID with eager loading."""
+    stmt = (
+        select(Group)
+        .where(Group.id == group_id)
+        .options(selectinload(Group.members))
+        .options(selectinload(Group.creator))
+    )
+    
+    result = await db.execute(stmt)
+    group = result.scalars().first()
+    return group
+
+async def add_member_to_group(
+    db: AsyncSession,
+    user_id: int,
+    group 
+) -> Group:
+    
+    
+    result = await db.execute(select(User).where(User.id == user_id))
+    user = result.scalars().first()
+    
+    if user and user not in group.members:
+        group.members.append(user)
+        await db.commit()
+        
+        # ✅ Refresh with eager loading
+        await db.refresh(
+            group,
+            attribute_names=["members", "creator"]
+        )
+    
+    return group
 
